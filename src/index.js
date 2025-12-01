@@ -1,62 +1,40 @@
 import "./styles.css";
-import { addProject, newProjectArray } from "./project-dom";
-import {
-  displayForm,
-  closeForm,
-  submitForm,
-  completeTask,
-  deleteEditTask,
-} from "./to-do-dom";
-import { todoFactory } from "./to-do";
+import cat1 from "./cat.jpeg";
+import cat2 from "./cat2.jpg";
+import man1 from "./man1.jpeg";
+import man2 from "./man2.jpeg";
+import woman1 from "./woman1.jpeg";
+import woman2 from "./woman2.jpg";
 
-const clear = document.createElement("button");
-clear.addEventListener("click", (e) => {
-  localStorage.clear();
-  location.reload();
-});
-document.body.append(clear);
+const pictureHolder = document.querySelector(".picture-frame");
 
-addProject();
-displayForm();
-closeForm();
-completeTask();
-deleteEditTask();
+const catpic1 = document.createElement("img");
+catpic1.classList.add("cat1");
+catpic1.src = cat1;
 
-const todos = [];
+const catpic2 = document.createElement("img");
+catpic2.classList.add("cat2");
+catpic2.src = cat2;
 
-submitForm((formProps) => {
-  const { title, dueDate, priority } = formProps;
-  const newTodo = todoFactory(title, dueDate, priority);
+const manpic1 = document.createElement("img");
+manpic1.classList.add("man1");
+manpic1.src = man1;
 
-  displayTodo(newTodo);
-  saveToLocalStorage(formProps);
-});
+const manpic2 = document.createElement("img");
+manpic2.classList.add("man2");
+manpic2.src = man2;
 
-function saveToLocalStorage(formProps) {
-  const existingData = JSON.parse(localStorage.getItem("formProps")) || [];
+const womanpic1 = document.createElement("img");
+womanpic1.classList.add("woman1");
+womanpic1.src = woman1;
 
-  existingData.push(formProps);
+const womanpic2 = document.createElement("img");
+womanpic2.classList.add("woman2");
+womanpic2.src = woman2;
 
-  localStorage.setItem("formProps", JSON.stringify(existingData));
-}
-
-const savedData = JSON.parse(localStorage.getItem("formProps"));
-if (savedData) {
-  savedData.forEach((item) => {
-    const { title, dueDate, priority } = item;
-    const newTodo = todoFactory(title, dueDate, priority);
-
-    displayTodo(newTodo);
-  });
-}
-
-function displayTodo(todoInstance) {
-  todoInstance.displayCheckbox();
-  todoInstance.displayTitle();
-  todoInstance.displayDate();
-  todoInstance.displayPriority();
-  todoInstance.displayDelete();
-  todoInstance.displayEdit();
-  todoInstance.selectProject();
-  todoInstance.displayDescription();
-}
+// pictureHolder.append(manpic1);
+// pictureHolder.append(manpic2);
+// pictureHolder.append(catpic1);
+// pictureHolder.append(catpic2);
+// pictureHolder.append(womanpic1);
+pictureHolder.append(womanpic2);
