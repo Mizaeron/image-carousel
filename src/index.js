@@ -32,9 +32,58 @@ const womanpic2 = document.createElement("img");
 womanpic2.classList.add("woman2");
 womanpic2.src = woman2;
 
-// pictureHolder.append(manpic1);
+pictureHolder.append(manpic1);
 // pictureHolder.append(manpic2);
 // pictureHolder.append(catpic1);
 // pictureHolder.append(catpic2);
 // pictureHolder.append(womanpic1);
-pictureHolder.append(womanpic2);
+// pictureHolder.append(womanpic2);
+
+function nextSlide() {
+  const rightArrow = document.querySelector(".arrow-right");
+
+  rightArrow.addEventListener("click", () => {
+    if (pictureHolder.contains(manpic1)) {
+      manpic1.remove();
+      pictureHolder.append(manpic2);
+    } else if (pictureHolder.contains(manpic2)) {
+      manpic2.remove();
+      pictureHolder.append(catpic1);
+    } else if (pictureHolder.contains(catpic1)) {
+      catpic1.remove();
+      pictureHolder.append(catpic2);
+    } else if (pictureHolder.contains(catpic2)) {
+      catpic2.remove();
+      pictureHolder.append(womanpic1);
+    } else {
+      womanpic1.remove();
+      pictureHolder.append(womanpic2);
+    }
+  });
+}
+
+function previousSlide() {
+  const leftArrow = document.querySelector(".arrow-left");
+
+  leftArrow.addEventListener("click", () => {
+    if (pictureHolder.contains(manpic2)) {
+      manpic2.remove();
+      pictureHolder.append(manpic1);
+    } else if (pictureHolder.contains(catpic1)) {
+      catpic1.remove();
+      pictureHolder.append(manpic2);
+    } else if (pictureHolder.contains(catpic2)) {
+      catpic2.remove();
+      pictureHolder.append(catpic1);
+    } else if (pictureHolder.contains(womanpic1)) {
+      womanpic1.remove();
+      pictureHolder.append(catpic2);
+    } else if (pictureHolder.contains(womanpic2)) {
+      womanpic2.remove();
+      pictureHolder.append(womanpic1);
+    }
+  });
+}
+
+nextSlide();
+previousSlide();
