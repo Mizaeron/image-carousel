@@ -29,11 +29,22 @@ body {
 .arrow-right {
     width: 120px;
     height: 120px;
-    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.arrow-right:hover,
+.arrow-left:hover {
+    background-color: hsl(0, 0%, 0%, 0.2);
+    cursor: pointer;
+}
+
+.arrow-right:active,
+.arrow-left:active {
+    background-color: hsl(208, 100%, 97%, 0.6);
 }
 
 .arrow-left {
     width: 120px;
     height: 120px;
-    margin-left: 20px;
+    margin-right: 20px;
 }
