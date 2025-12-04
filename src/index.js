@@ -40,6 +40,15 @@ womanpic2.src = woman2;
 
 pictureHolder.append(manpic1);
 
+const allPics = [
+  firstMan,
+  secondMan,
+  firstCat,
+  secondCat,
+  firstWoman,
+  secondWoman,
+];
+
 function nextSlide() {
   const rightArrow = document.querySelector(".arrow-right");
 
@@ -47,28 +56,18 @@ function nextSlide() {
     if (pictureHolder.contains(manpic1)) {
       manpic1.remove();
       pictureHolder.append(manpic2);
-      // secondMan.style.fill = "black";
-      // firstMan.style.fill = "white";
     } else if (pictureHolder.contains(manpic2)) {
       manpic2.remove();
       pictureHolder.append(catpic1);
-      // firstCat.style.fill = "black";
-      // secondMan.style.fill = "white";
     } else if (pictureHolder.contains(catpic1)) {
       catpic1.remove();
       pictureHolder.append(catpic2);
-      // secondCat.style.fill = "black";
-      // firstCat.style.fill = "white";
     } else if (pictureHolder.contains(catpic2)) {
       catpic2.remove();
       pictureHolder.append(womanpic1);
-      // secondCat.style.fill = "white";
-      // firstWoman.style.fill = "black";
     } else {
       womanpic1.remove();
       pictureHolder.append(womanpic2);
-      // firstWoman.style.fill = "white";
-      // secondWoman.style.fill = "black";
     }
   });
 }
@@ -107,10 +106,62 @@ function checkImage() {
   const currentImage = images[0];
 
   if (currentImage.src.includes(manpic1.src)) {
-    console.log("manpic1");
+    allPics.forEach((pic) => {
+      pic.style.fill = "white";
+    });
+    firstMan.style.fill = "black";
   } else if (currentImage.src.includes(manpic2.src)) {
-    console.log("manpic2");
+    allPics.forEach((pic) => {
+      pic.style.fill = "white";
+    });
+    secondMan.style.fill = "black";
+  } else if (currentImage.src.includes(catpic1.src)) {
+    allPics.forEach((pic) => {
+      pic.style.fill = "white";
+    });
+    firstCat.style.fill = "black";
+  } else if (currentImage.src.includes(catpic2.src)) {
+    allPics.forEach((pic) => {
+      pic.style.fill = "white";
+    });
+    secondCat.style.fill = "black";
+  } else if (currentImage.src.includes(womanpic1.src)) {
+    allPics.forEach((pic) => {
+      pic.style.fill = "white";
+    });
+    firstWoman.style.fill = "black";
+  } else if (currentImage.src.includes(womanpic2.src)) {
+    allPics.forEach((pic) => {
+      pic.style.fill = "white";
+    });
+    secondWoman.style.fill = "black";
   }
+}
+
+function clickCircle() {
+  const circles = document.querySelector(".circle");
+
+  circles.addEventListener("click", (e) => {
+    if (e.target.closest(".first-man")) {
+      pictureHolder.removeChild(pictureHolder.firstChild);
+      pictureHolder.append(manpic1);
+    } else if (e.target.closest(".second-man")) {
+      pictureHolder.removeChild(pictureHolder.firstChild);
+      pictureHolder.append(manpic2);
+    } else if (e.target.closest(".first-cat")) {
+      pictureHolder.removeChild(pictureHolder.firstChild);
+      pictureHolder.append(catpic1);
+    } else if (e.target.closest(".second-cat")) {
+      pictureHolder.removeChild(pictureHolder.firstChild);
+      pictureHolder.append(catpic2);
+    } else if (e.target.closest(".first-woman")) {
+      pictureHolder.removeChild(pictureHolder.firstChild);
+      pictureHolder.append(womanpic1);
+    } else if (e.target.closest(".second-woman")) {
+      pictureHolder.removeChild(pictureHolder.firstChild);
+      pictureHolder.append(womanpic2);
+    }
+  });
 }
 
 const observer = new MutationObserver(() => {
@@ -121,3 +172,4 @@ observer.observe(pictureHolder, { childList: true, subtree: true });
 
 nextSlide();
 previousSlide();
+clickCircle();

@@ -58,3 +58,7 @@ body {
     margin-top: 10px;
     gap: 10px;
 }
+
+.circle:hover {
+    cursor: pointer;
+}
