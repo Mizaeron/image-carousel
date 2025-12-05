@@ -164,9 +164,35 @@ function clickCircle() {
   });
 }
 
+const images = [manpic1, manpic2, catpic1, catpic2, womanpic1, womanpic2];
+
+function advanceImage() {
+  if (pictureHolder.contains(manpic1)) {
+    pictureHolder.removeChild(pictureHolder.firstChild);
+    pictureHolder.append(manpic2);
+  } else if (pictureHolder.contains(manpic2)) {
+    pictureHolder.removeChild(pictureHolder.firstChild);
+    pictureHolder.append(catpic1);
+  } else if (pictureHolder.contains(catpic1)) {
+    pictureHolder.removeChild(pictureHolder.firstChild);
+    pictureHolder.append(catpic2);
+  } else if (pictureHolder.contains(catpic2)) {
+    pictureHolder.removeChild(pictureHolder.firstChild);
+    pictureHolder.append(womanpic1);
+  } else if (pictureHolder.contains(womanpic1)) {
+    pictureHolder.removeChild(pictureHolder.firstChild);
+    pictureHolder.append(womanpic2);
+  } else {
+    pictureHolder.removeChild(pictureHolder.firstChild);
+    pictureHolder.append(manpic1);
+  }
+}
+
 const observer = new MutationObserver(() => {
   checkImage();
 });
+
+setInterval(advanceImage, 5000);
 
 observer.observe(pictureHolder, { childList: true, subtree: true });
 
